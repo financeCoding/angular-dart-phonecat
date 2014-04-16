@@ -1,6 +1,7 @@
 library phonecat;
 
 import 'package:angular/angular.dart';
+import 'package:angular/angular_dynamic.dart';
 import 'package:angular/routing/module.dart';
 import 'package:di/di.dart';
 import 'package:logging/logging.dart';
@@ -37,5 +38,8 @@ phonecatRouteInitializer(Router router, RouteViewFactory views) =>
 main() {
   Logger.root.level = Level.FINEST;
   Logger.root.onRecord.listen((LogRecord r) { print(r.message); });
-  ngBootstrap(module: new PhonecatAppModule());
+
+  ngDynamicApp()
+      .addModule(new PhonecatAppModule())
+      .run();
 }
